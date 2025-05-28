@@ -1,0 +1,73 @@
+<div class="container mx-auto p-6">
+  <div *ngIf="courseDetails" class="bg-white shadow-lg rounded-lg p-6">
+    <div class="flex flex-col md:flex-row gap-6">
+      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="{{ courseDetails.title }}" class="w-full md:w-1/3 rounded-lg">
+      <div class="flex-1">
+        <h1 class="text-3xl font-bold mb-4">{{ courseDetails.title }}</h1>
+        <p class="text-gray-600 mb-4">{{ courseDetails.description }}</p>
+        <p class="text-lg font-semibold">Price: <span class="text-green-600">${{ courseDetails.price }}</span></p>
+        <p class="text-gray-600">Type: {{ courseDetails.courseType }}</p>
+        <p class="text-gray-600">Seats Available: {{ courseDetails.seatsAvailable }}</p>
+        <p class="text-gray-600">Duration: {{ courseDetails.duration }} hours</p>
+        <p class="text-gray-600">Start Date: {{ courseDetails.startDate | date }}</p>
+        <p class="text-gray-600">End Date: {{ courseDetails.endDate | date }}</p>
+        <p class="text-gray-600">Category: {{ courseDetails.category.categoryName }}</p>
+        <p class="text-gray-600">Instructor ID: {{ courseDetails.instructorId }}</p>
+        <p class="text-gray-600">Average Rating: {{ courseDetails.userRating.averageRating }} ({{ courseDetails.userRating.totalRating }} reviews)</p>
+        <div class="mt-4 flex gap-4">
+          <button class="bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 transition-colors font-semibold" (click)="enroll()">Enroll This Course</button>
+          <button class="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600 transition-colors font-semibold" (click)="addReview()">Add Review</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6" *ngIf="showReviewForm">
+      <h2 class="text-2xl font-bold mb-4">Add Your Review</h2>
+      <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+        <div class="mb-4">
+          <label for="rating" class="block text-gray-700 font-bold mb-2">Rating (1-5)</label>
+          <input id="rating" type="number" formControlName="rating" class="w-full border border-gray-300 rounded-lg p-2">
+          <div *ngIf="reviewForm.get('rating')?.invalid && reviewForm.get('rating')?.touched" class="text-red-500 text-sm">
+            Rating is required and must be between 1 and 5.
+          </div>
+        </div>
+        <div class="mb-4">
+          <label for="comments" class="block text-gray-700 font-bold mb-2">Comments</label>
+          <textarea id="comments" formControlName="comments" class="w-full border border-gray-300 rounded-lg p-2"></textarea>
+          <div *ngIf="reviewForm.get('comments')?.invalid && reviewForm.get('comments')?.touched" class="text-red-500 text-sm">
+            Comments are required.
+          </div>
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600 transition-colors font-semibold" [disabled]="reviewForm.invalid">Submit Review</button>
+      </form>
+    </div>
+
+    <div class="mt-6">
+      <h2 class="text-2xl font-bold mb-4">Session Details</h2>
+      <ul class="list-disc pl-6" *ngIf="courseDetails.sessionDetails.length > 0; else noSessions">
+        <li *ngFor="let session of courseDetails.sessionDetails">
+          <p class="font-bold">{{ session.title }}</p>
+          <p class="text-gray-600 mb-2">{{ session.description }}</p>
+          <button class="text-blue-500 underline" (click)="openVideo(session.videoUrl)">Watch Video</button>
+        </li>
+      </ul>
+      <ng-template #noSessions>
+        <p class="text-gray-600">There are no sessions available for this course.</p>
+      </ng-template>
+    </div>
+
+    <div class="mt-6">
+      <h2 class="text-2xl font-bold mb-4">Reviews</h2>
+      <div *ngIf="courseDetails.reviews.length > 0; else noReviews">
+        <div *ngFor="let review of courseDetails.reviews" class="border-b border-gray-200 py-4">
+          <p class="text-gray-800 font-semibold">{{ review.userName }}</p>
+          <p class="text-gray-600">{{ review.comments }}</p>
+          <p class="text-yellow-500">Rating: {{ review.rating }}</p>
+        </div>
+      </div>
+      <ng-template #noReviews>
+        <p class="text-gray-600">There are no reviews for this course.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="flex flex-col gap-5 p-5">
+  <div *ngFor="let category of categories" class="w-full p-5 border border-gray-300 rounded-lg shadow-lg hover:shadow-xl transition-shadow flex justify-between items-center">
+    <div>
+      <h2 class="text-2xl font-bold mb-2">{{ category.categoryName }}</h2>
+      <p class="text-gray-600">{{ category.description }}</p>
+    </div>
+    <button [routerLink]="['/course/category', category.categoryId]" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300">
+        Explore Courses
+      </button>  </div>
+</div>

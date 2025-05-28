@@ -1,0 +1,10 @@
+<div class="flex flex-col gap-6 p-6 bg-gray-100">
+  <div *ngFor="let enrollment of enrollments" class="bg-white border border-gray-200 rounded-lg shadow-lg p-6 w-full">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">{{ enrollment.courseTitle || 'Course Title Not Available' }}</h2>
+    <p class="text-gray-600 mb-2">Enrollment Date: <span class="font-medium">{{ enrollment.enrollmentDate | date }}</span></p>
+    <p class="text-gray-600 mb-2">Payment Status: <span class="font-medium">{{ enrollment.paymentStatus }}</span></p>
+    <p class="text-gray-600 mb-2">Payment Method: <span class="font-medium">{{ enrollment.coursePaymentModel.paymentMethod }}</span></p>
+    <p class="text-gray-600 mb-4">Amount Paid: <span class="font-medium">${{ enrollment.coursePaymentModel.amount }}</span></p>
+    <button [routerLink]="['/course/details/', enrollment.courseId]" class="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600 transition-colors w-full font-semibold">Actions</button>
+  </div>
+</div>

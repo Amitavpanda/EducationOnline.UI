@@ -1,0 +1,35 @@
+<!-- Carousel -->
+<div class="carousel relative w-full overflow-hidden mt-4 ">
+  <div id="carousel-inner" class="carousel-inner relative w-full flex transition-transform duration-500 ease-in-out">
+    <!-- Slide 1 -->
+    <div class="carousel-item w-full flex-shrink-0 flex justify-center items-center">
+      <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Education Image 1" class="h-full w-auto object-cover">
+    </div>
+    <!-- Slide 2 -->
+    <div class="carousel-item w-full flex-shrink-0 flex justify-center items-center">
+      <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Education Image 2" class="h-full w-auto object-cover">
+    </div>
+    <!-- Slide 3 -->
+    <div class="carousel-item w-full flex-shrink-0 flex justify-center items-center">
+      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Education Image 3" class="h-full w-auto object-cover">
+    </div>
+  </div>
+  <!-- Navigation Buttons -->
+  <button (click)="prevSlide()" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 z-10">&#10094;</button>
+  <button (click)="nextSlide()" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 z-10">&#10095;</button>
+</div>
+
+<!-- Heading and Info -->
+<div class="text-center mt-8">
+  <h1 class="text-3xl font-bold">All Skills You Need in One Place</h1>
+  <p class="mt-4 text-gray-600">Join our platform to access a wide range of courses designed to help you achieve your goals. Learn at your own pace with expert instructors and comprehensive resources.</p>
+</div>
+
+<!-- Explore Courses Button -->
+<div class="text-center mt-6">
+  <button [routerLink]="['/course/browse']" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300">
+    Explore Courses
+  </button>
+</div>
+<app-category></app-category>
+<app-plan-and-pricing></app-plan-and-pricing>

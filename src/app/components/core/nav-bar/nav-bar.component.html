@@ -1,0 +1,90 @@
+<nav class="bg-blue-600 text-white shadow-md">
+  <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+    <!-- App Name -->
+    <div class="text-2xl font-bold">
+      <a [routerLink]="['/home']" routerLinkActive="active">SmartLearn by Karthik</a>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="hidden md:flex space-x-6">
+      <a [routerLink]="['/home']" routerLinkActive="active" class="hover:text-gray-200 transition duration-300">Home</a>
+      <div class="relative">
+        <button (click)="toggleDropdown()" class="hover:text-gray-200 transition duration-300 flex items-center">
+          Courses
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div *ngIf="dropdownOpen" class="absolute bg-white text-black shadow-lg rounded-md mt-2 z-10">
+          <a [routerLink]="['/course/category']" routerLinkActive="active" class="block px-4 py-2 hover:bg-gray-100">Categories</a>
+          <a [routerLink]="['/course/browse']" routerLinkActive="active" class="block px-4 py-2 hover:bg-gray-100">Courses</a>
+          <a [routerLink]="['/course/enrollments']" routerLinkActive="active" class="block px-4 py-2 hover:bg-gray-100">Enrollments</a>
+        </div>
+      </div>
+      <a [routerLink]="['/about']" routerLinkActive="active" class="hover:text-gray-200 transition duration-300">About</a>
+      <a [routerLink]="['/contact']" routerLinkActive="active" class="hover:text-gray-200 transition duration-300">Contact Us</a>
+    </div>
+
+    <!-- Search Bar and Buttons -->
+    <div class="flex items-center space-x-4">
+      <!-- Search Bar -->
+      <div class="relative">
+        <input
+          type="text"
+          placeholder="Search courses"
+          class="px-4 py-2 rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
+        />
+        <button class="absolute right-2 top-2 text-gray-500 hover:text-gray-700">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 16l-4-4m0 0l4-4m-4 4h16"
+            />
+          </svg>
+        </button>
+      </div>
+
+
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button
+      class="md:hidden text-white focus:outline-none"
+      id="mobile-menu-button"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16m-7 6h7"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="md:hidden hidden" id="mobile-menu">
+    <a [routerLink]="['/home']" routerLinkActive="active" class="block px-4 py-2 hover:bg-blue-700">Home</a>
+    <a [routerLink]="['/course/category']" routerLinkActive="active" class="block px-4 py-2 hover:bg-blue-700">Categories</a>
+    <a [routerLink]="['/course/courses']" routerLinkActive="active" class="block px-4 py-2 hover:bg-blue-700">Courses</a>
+    <a [routerLink]="['/course/enrollments']" routerLinkActive="active" class="block px-4 py-2 hover:bg-blue-700">Enrollments</a>
+    <a [routerLink]="['/about-us']" routerLinkActive="active" class="block px-4 py-2 hover:bg-blue-700">About</a>
+    <a [routerLink]="['/contact-us']" routerLinkActive="active" class="block px-4 py-2 hover:bg-blue-700">Contact Us</a>
+    <a [routerLink]="['/plans-and-price']" routerLinkActive="active" class="block px-4 py-2 hover:bg-blue-700">Plans & Pricing</a>
+  </div>
+</nav>
